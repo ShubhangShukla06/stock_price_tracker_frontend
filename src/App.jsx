@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     const allNSEStocks = [];
     axios
-      .get("/api/bse/get_list_of_stocks")
+      .get("https://stock-price-tracker-backend-one.vercel.app/api/bse/get_list_of_stocks")
       .then((response) => {
         allNSEStocks.push(
           ...response.data.data.map((stock) => {
@@ -36,7 +36,7 @@ const App = () => {
   let intervalRef;
   const getRandomPrice = () => {
     axios
-      .get(`/api/bse/get_random_price?low=${lowPrice}&high=${highPrice}`)
+      .get(`https://stock-price-tracker-backend-one.vercel.app/api/bse/get_random_price?low=${lowPrice}&high=${highPrice}`)
       .then((response) => {
         setRandomPrice(response.data.data);
       })
@@ -55,7 +55,7 @@ const App = () => {
     setSymbol(e.value);
 
     axios
-      .get(`/api/bse/get_quote?symbol=${e.value}`)
+      .get(`https://stock-price-tracker-backend-one.vercel.app/api/bse/get_quote?symbol=${e.value}`)
       .then((response) => {
         setLowPrice(parseFloat(response.data["Global Quote"]["04. low"]));
         setHighPrice(parseFloat(response.data["Global Quote"]["03. high"]));
